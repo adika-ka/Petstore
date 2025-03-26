@@ -44,7 +44,7 @@ func RegisterPetRoutes(r chi.Router, pc *PetController) {
 // @Tags pet
 // @Accept json
 // @Produce json
-// @Param pet body model.Pet true "Pet object that needs to be added to the store"
+// @Param body body model.Pet true "Pet to add"
 // @Success 200 {object} model.Pet
 // @Security ApiKeyAuth
 // @Router /pet [post]
@@ -81,7 +81,7 @@ func addPet(pc *PetController) http.HandlerFunc {
 // @Tags         pet
 // @Accept       json
 // @Produce      json
-// @Param        pet  body      model.Pet  true  "Pet object that needs to be added to the store"
+// @Param        body  body  model.Pet  true  "Pet to update"
 // @Success      200  {object}  model.Pet
 // @Security ApiKeyAuth
 // @Router       /pet [put]

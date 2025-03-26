@@ -1,877 +1,753 @@
 {
-    "swagger": "2.0",
-    "info": {
-        "description": "This is a sample Petstore server.",
-        "title": "Petstore API",
-        "contact": {},
-        "version": "1.0"
-    },
-    "host": "localhost:8080",
-    "basePath": "/",
-    "paths": {
-        "/pet": {
-            "put": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "description": "Update an existing pet in the store",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "pet"
-                ],
-                "summary": "Update an existing pet",
-                "parameters": [
-                    {
-                        "description": "Pet object that needs to be added to the store",
-                        "name": "pet",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/model.Pet"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/model.Pet"
-                        }
-                    }
-                }
-            },
-            "post": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "pet"
-                ],
-                "summary": "Add a new pet to the store",
-                "parameters": [
-                    {
-                        "description": "Pet object that needs to be added to the store",
-                        "name": "pet",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/model.Pet"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/model.Pet"
-                        }
-                    }
-                }
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a sample Petstore server.",
+    "title": "Petstore API",
+    "contact": {},
+    "version": "1.0"
+  },
+  "host": "localhost:8080",
+  "basePath": "/",
+  "paths": {
+    "/pet": {
+      "put": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "Update an existing pet in the store",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["pet"],
+        "summary": "Update an existing pet",
+        "parameters": [
+          {
+            "description": "Pet to update",
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.Pet"
             }
-        },
-        "/pet/findByStatus": {
-            "get": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "description": "Multiple status values can be provided with comma separated strings",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "pet"
-                ],
-                "summary": "Finds Pets by status",
-                "parameters": [
-                    {
-                        "type": "array",
-                        "items": {
-                            "enum": [
-                                "available",
-                                "pending",
-                                "sold"
-                            ],
-                            "type": "string"
-                        },
-                        "collectionFormat": "csv",
-                        "description": "Status values that need to be considered for filter",
-                        "name": "status",
-                        "in": "query",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/model.Pet"
-                            }
-                        }
-                    }
-                }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/model.Pet"
             }
-        },
-        "/pet/findByTags": {
-            "get": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "description": "Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "pet"
-                ],
-                "summary": "Finds Pets by tags",
-                "deprecated": true,
-                "parameters": [
-                    {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        },
-                        "collectionFormat": "csv",
-                        "description": "Tags to filter by",
-                        "name": "tags",
-                        "in": "query",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/model.Pet"
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/pet/{petId}": {
-            "get": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "description": "Returns a single pet",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "pet"
-                ],
-                "summary": "Find pet by ID",
-                "parameters": [
-                    {
-                        "type": "integer",
-                        "description": "ID of pet to return",
-                        "name": "petId",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "$ref": "#/definitions/model.Pet"
-                        }
-                    }
-                }
-            },
-            "post": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "description": "Updates name and status of pet",
-                "consumes": [
-                    "multipart/form-data"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "pet"
-                ],
-                "summary": "Updates a pet in the store with form data",
-                "parameters": [
-                    {
-                        "type": "integer",
-                        "description": "ID of pet that needs to be updated",
-                        "name": "petId",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "Updated name of the pet",
-                        "name": "name",
-                        "in": "formData"
-                    },
-                    {
-                        "type": "string",
-                        "description": "Updated status of the pet",
-                        "name": "status",
-                        "in": "formData"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "$ref": "#/definitions/model.Pet"
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "description": "Deletes a pet by ID",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "pet"
-                ],
-                "summary": "Deletes a pet",
-                "parameters": [
-                    {
-                        "type": "integer",
-                        "description": "Pet id to delete",
-                        "name": "petId",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "$ref": "#/definitions/model.ApiResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/pet/{petId}/uploadImage": {
-            "post": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "consumes": [
-                    "multipart/form-data"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "pet"
-                ],
-                "summary": "uploads an image",
-                "parameters": [
-                    {
-                        "type": "integer",
-                        "description": "ID of pet to update",
-                        "name": "petId",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "Additional data to pass to server",
-                        "name": "additionalMetadata",
-                        "in": "formData"
-                    },
-                    {
-                        "type": "file",
-                        "description": "File to upload",
-                        "name": "file",
-                        "in": "formData",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/model.ApiResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/store/inventory": {
-            "get": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "description": "Returns a map of status codes to quantities",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "store"
-                ],
-                "summary": "Returns pet inventories by status",
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "type": "object",
-                            "additionalProperties": {
-                                "type": "integer"
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/store/order": {
-            "post": {
-                "description": "Places a new order in the system",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "store"
-                ],
-                "summary": "Place an order for a pet",
-                "parameters": [
-                    {
-                        "description": "order placed for purchasing the pet",
-                        "name": "order",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/model.Order"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/model.Order"
-                        }
-                    }
-                }
-            }
-        },
-        "/store/order/{orderId}": {
-            "get": {
-                "description": "For valid response try integer IDs with value \u003e= 1 and \u003c= 10. Other values will generate exceptions",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "store"
-                ],
-                "summary": "Find purchase order by ID",
-                "parameters": [
-                    {
-                        "type": "integer",
-                        "description": "ID of pet that needs to be fetched",
-                        "name": "orderId",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/model.Order"
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "description": "For valid response try integer IDs with positive integer value. Negative or non-integer values will generate API errors",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "store"
-                ],
-                "summary": "Delete purchase order by ID",
-                "parameters": [
-                    {
-                        "type": "integer",
-                        "description": "ID of the order that needs to be deleted",
-                        "name": "orderId",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "$ref": "#/definitions/model.ApiResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/user": {
-            "post": {
-                "description": "This can only be done by the logged in user.",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "user"
-                ],
-                "summary": "Create user",
-                "parameters": [
-                    {
-                        "description": "Created user object",
-                        "name": "body",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/model.User"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "$ref": "#/definitions/model.ApiResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/user/createWithArray": {
-            "post": {
-                "description": "Creates list of users with given input array",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "user"
-                ],
-                "summary": "Creates list of users with given input array",
-                "parameters": [
-                    {
-                        "description": "List of user object",
-                        "name": "body",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/model.User"
-                            }
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "$ref": "#/definitions/model.ApiResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/user/createWithList": {
-            "post": {
-                "description": "Creates list of users with given input array",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "user"
-                ],
-                "summary": "Creates list of users with given input array",
-                "parameters": [
-                    {
-                        "description": "List of user object",
-                        "name": "body",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/model.User"
-                            }
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "$ref": "#/definitions/model.ApiResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/user/login": {
-            "get": {
-                "description": "Logs user into the system",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "user"
-                ],
-                "summary": "Logs user into the system",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "The user name for login",
-                        "name": "username",
-                        "in": "query",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "The password for login in clear text",
-                        "name": "password",
-                        "in": "query",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "token",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/user/logout": {
-            "get": {
-                "description": "Logs out current logged in user session",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "user"
-                ],
-                "summary": "Logs out current logged in user session",
-                "responses": {
-                    "200": {
-                        "description": "ok",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/user/{username}": {
-            "get": {
-                "description": "The name that needs to be fetched. Use user1 for testing.",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "user"
-                ],
-                "summary": "Get user by user name",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "The name that needs to be fetched",
-                        "name": "username",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "$ref": "#/definitions/model.User"
-                        }
-                    }
-                }
-            },
-            "put": {
-                "description": "This can only be done by the logged in user.",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "user"
-                ],
-                "summary": "Updated user",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "name that need to be updated",
-                        "name": "username",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "description": "Updated user object",
-                        "name": "user",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/model.User"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "$ref": "#/definitions/model.User"
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "description": "This can only be done by the logged in user.",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "user"
-                ],
-                "summary": "Delete user",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "The name that needs to be deleted",
-                        "name": "username",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "$ref": "#/definitions/model.ApiResponse"
-                        }
-                    }
-                }
-            }
+          }
         }
-    },
-    "definitions": {
-        "model.ApiResponse": {
-            "type": "object",
-            "properties": {
-                "code": {
-                    "type": "integer",
-                    "example": 200
-                },
-                "message": {
-                    "type": "string",
-                    "example": "file uploaded successfully"
-                },
-                "type": {
-                    "type": "string",
-                    "example": "success"
-                }
+      },
+      "post": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["pet"],
+        "summary": "Add a new pet to the store",
+        "parameters": [
+          {
+            "description": "Pet to add",
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.Pet"
             }
-        },
-        "model.Category": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer"
-                },
-                "name": {
-                    "type": "string"
-                }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/model.Pet"
             }
-        },
-        "model.Order": {
-            "type": "object",
-            "properties": {
-                "complete": {
-                    "type": "boolean"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "petId": {
-                    "type": "integer"
-                },
-                "quantity": {
-                    "type": "integer"
-                },
-                "shipDate": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "string"
-                }
-            }
-        },
-        "model.Pet": {
-            "type": "object",
-            "properties": {
-                "category": {
-                    "$ref": "#/definitions/model.Category"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "photoUrls": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "status": {
-                    "type": "string"
-                },
-                "tags": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/model.Tag"
-                    }
-                }
-            }
-        },
-        "model.Tag": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer"
-                },
-                "name": {
-                    "type": "string"
-                }
-            }
-        },
-        "model.User": {
-            "type": "object",
-            "properties": {
-                "email": {
-                    "type": "string"
-                },
-                "firstName": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "lastName": {
-                    "type": "string"
-                },
-                "password": {
-                    "type": "string"
-                },
-                "phone": {
-                    "type": "string"
-                },
-                "userStatus": {
-                    "type": "integer"
-                },
-                "username": {
-                    "type": "string"
-                }
-            }
+          }
         }
+      }
     },
-    "securityDefinitions": {
-        "ApiKeyAuth": {
-            "type": "apiKey",
-            "name": "Authorization",
-            "in": "header"
+    "/pet/findByStatus": {
+      "get": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "Multiple status values can be provided with comma separated strings",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["pet"],
+        "summary": "Finds Pets by status",
+        "parameters": [
+          {
+            "type": "array",
+            "items": {
+              "enum": ["available", "pending", "sold"],
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "Status values that need to be considered for filter",
+            "name": "status",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/model.Pet"
+              }
+            }
+          }
         }
+      }
+    },
+    "/pet/findByTags": {
+      "get": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["pet"],
+        "summary": "Finds Pets by tags",
+        "deprecated": true,
+        "parameters": [
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "description": "Tags to filter by",
+            "name": "tags",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/model.Pet"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pet/{petId}": {
+      "get": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "Returns a single pet",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["pet"],
+        "summary": "Find pet by ID",
+        "parameters": [
+          {
+            "type": "integer",
+            "description": "ID of pet to return",
+            "name": "petId",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/model.Pet"
+            }
+          }
+        }
+      },
+      "post": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "Updates name and status of pet",
+        "consumes": ["multipart/form-data"],
+        "produces": ["application/json"],
+        "tags": ["pet"],
+        "summary": "Updates a pet in the store with form data",
+        "parameters": [
+          {
+            "type": "integer",
+            "description": "ID of pet that needs to be updated",
+            "name": "petId",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Updated name of the pet",
+            "name": "name",
+            "in": "formData"
+          },
+          {
+            "type": "string",
+            "description": "Updated status of the pet",
+            "name": "status",
+            "in": "formData"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/model.Pet"
+            }
+          }
+        }
+      },
+      "delete": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "Deletes a pet by ID",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["pet"],
+        "summary": "Deletes a pet",
+        "parameters": [
+          {
+            "type": "integer",
+            "description": "Pet id to delete",
+            "name": "petId",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/model.ApiResponse"
+            }
+          }
+        }
+      }
+    },
+    "/pet/{petId}/uploadImage": {
+      "post": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "consumes": ["multipart/form-data"],
+        "produces": ["application/json"],
+        "tags": ["pet"],
+        "summary": "uploads an image",
+        "parameters": [
+          {
+            "type": "integer",
+            "description": "ID of pet to update",
+            "name": "petId",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Additional data to pass to server",
+            "name": "additionalMetadata",
+            "in": "formData"
+          },
+          {
+            "type": "file",
+            "description": "File to upload",
+            "name": "file",
+            "in": "formData",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/model.ApiResponse"
+            }
+          }
+        }
+      }
+    },
+    "/store/inventory": {
+      "get": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "Returns a map of status codes to quantities",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["store"],
+        "summary": "Returns pet inventories by status",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "integer"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/store/order": {
+      "post": {
+        "description": "Places a new order in the system",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["store"],
+        "summary": "Place an order for a pet",
+        "parameters": [
+          {
+            "description": "order placed for purchasing the pet",
+            "name": "order",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.Order"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/model.Order"
+            }
+          }
+        }
+      }
+    },
+    "/store/order/{orderId}": {
+      "get": {
+        "description": "For valid response try integer IDs with value \u003e= 1 and \u003c= 10. Other values will generate exceptions",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["store"],
+        "summary": "Find purchase order by ID",
+        "parameters": [
+          {
+            "type": "integer",
+            "description": "ID of pet that needs to be fetched",
+            "name": "orderId",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/model.Order"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "For valid response try integer IDs with positive integer value. Negative or non-integer values will generate API errors",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["store"],
+        "summary": "Delete purchase order by ID",
+        "parameters": [
+          {
+            "type": "integer",
+            "description": "ID of the order that needs to be deleted",
+            "name": "orderId",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/model.ApiResponse"
+            }
+          }
+        }
+      }
+    },
+    "/user": {
+      "post": {
+        "description": "This can only be done by the logged in user.",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["user"],
+        "summary": "Create user",
+        "parameters": [
+          {
+            "description": "Created user object",
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/model.ApiResponse"
+            }
+          }
+        }
+      }
+    },
+    "/user/createWithArray": {
+      "post": {
+        "description": "Creates list of users with given input array",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["user"],
+        "summary": "Creates list of users with given input array",
+        "parameters": [
+          {
+            "description": "List of user object",
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/model.User"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/model.ApiResponse"
+            }
+          }
+        }
+      }
+    },
+    "/user/createWithList": {
+      "post": {
+        "description": "Creates list of users with given input array",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["user"],
+        "summary": "Creates list of users with given input array",
+        "parameters": [
+          {
+            "description": "List of user object",
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/model.User"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/model.ApiResponse"
+            }
+          }
+        }
+      }
+    },
+    "/user/login": {
+      "get": {
+        "description": "Logs user into the system",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["user"],
+        "summary": "Logs user into the system",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "The user name for login",
+            "name": "username",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "The password for login in clear text",
+            "name": "password",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "token",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/user/logout": {
+      "get": {
+        "description": "Logs out current logged in user session",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["user"],
+        "summary": "Logs out current logged in user session",
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/user/{username}": {
+      "get": {
+        "description": "The name that needs to be fetched. Use user1 for testing.",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["user"],
+        "summary": "Get user by user name",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "The name that needs to be fetched",
+            "name": "username",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/model.User"
+            }
+          }
+        }
+      },
+      "put": {
+        "description": "This can only be done by the logged in user.",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["user"],
+        "summary": "Updated user",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "name that need to be updated",
+            "name": "username",
+            "in": "path",
+            "required": true
+          },
+          {
+            "description": "Updated user object",
+            "name": "user",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/model.User"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "This can only be done by the logged in user.",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["user"],
+        "summary": "Delete user",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "The name that needs to be deleted",
+            "name": "username",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/model.ApiResponse"
+            }
+          }
+        }
+      }
     }
+  },
+  "definitions": {
+    "model.ApiResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "example": 200
+        },
+        "message": {
+          "type": "string",
+          "example": "operation completed successfully"
+        },
+        "type": {
+          "type": "string",
+          "example": "success"
+        }
+      }
+    },
+    "model.Category": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "model.Order": {
+      "type": "object",
+      "properties": {
+        "complete": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "petId": {
+          "type": "integer"
+        },
+        "quantity": {
+          "type": "integer"
+        },
+        "shipDate": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "model.Pet": {
+      "type": "object",
+      "properties": {
+        "category": {
+          "$ref": "#/definitions/model.Category"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "photoUrls": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "status": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/model.Tag"
+          }
+        }
+      }
+    },
+    "model.Tag": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "model.User": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "userStatus": {
+          "type": "integer"
+        },
+        "username": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "ApiKeyAuth": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  }
 }

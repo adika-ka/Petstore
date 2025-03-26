@@ -35,8 +35,8 @@ const docTemplate = `{
                 "summary": "Update an existing pet",
                 "parameters": [
                     {
-                        "description": "Pet object that needs to be added to the store",
-                        "name": "pet",
+                        "description": "Pet to update",
+                        "name": "body",
                         "in": "body",
                         "required": true,
                         "schema": {
@@ -71,8 +71,8 @@ const docTemplate = `{
                 "summary": "Add a new pet to the store",
                 "parameters": [
                     {
-                        "description": "Pet object that needs to be added to the store",
-                        "name": "pet",
+                        "description": "Pet to add",
+                        "name": "body",
                         "in": "body",
                         "required": true,
                         "schema": {
@@ -761,7 +761,7 @@ const docTemplate = `{
                 },
                 "message": {
                     "type": "string",
-                    "example": "file uploaded successfully"
+                    "example": "operation completed successfully"
                 },
                 "type": {
                     "type": "string",
