@@ -773,10 +773,12 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "id": {
-                    "type": "integer"
+                    "type": "integer",
+                    "example": 2
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "Dog"
                 }
             }
         },
@@ -784,22 +786,28 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "complete": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "example": false
                 },
                 "id": {
-                    "type": "integer"
+                    "type": "integer",
+                    "example": 10
                 },
                 "petId": {
-                    "type": "integer"
+                    "type": "integer",
+                    "example": 3
                 },
                 "quantity": {
-                    "type": "integer"
+                    "type": "integer",
+                    "example": 2
                 },
                 "shipDate": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "2025-03-29T15:04:05Z"
                 },
                 "status": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "placed"
                 }
             }
         },
@@ -810,19 +818,25 @@ const docTemplate = `{
                     "$ref": "#/definitions/model.Category"
                 },
                 "id": {
-                    "type": "integer"
+                    "type": "integer",
+                    "example": 1
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "Rex"
                 },
                 "photoUrls": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "example": [
+                        "[\"https://example.com/photo.jpg\"]"
+                    ]
                 },
                 "status": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "available"
                 },
                 "tags": {
                     "type": "array",
@@ -836,10 +850,12 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "id": {
-                    "type": "integer"
+                    "type": "integer",
+                    "example": 1
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "cute"
                 }
             }
         },
@@ -847,28 +863,36 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "email": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "johndoe@example.com"
                 },
                 "firstName": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "John"
                 },
                 "id": {
-                    "type": "integer"
+                    "type": "integer",
+                    "example": 1
                 },
                 "lastName": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "Doe"
                 },
                 "password": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "secret123"
                 },
                 "phone": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "+123456789"
                 },
                 "userStatus": {
-                    "type": "integer"
+                    "type": "integer",
+                    "example": 1
                 },
                 "username": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "johndoe"
                 }
             }
         }
